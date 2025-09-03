@@ -6,21 +6,27 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+        // Title
+        System.out.println("Sistem Nilai Siswa");
+
         // Open scanner
         Scanner inputScanner = new Scanner(System.in);
 
-        // Input
-        System.out.print("Input Username: ");
-        String name = inputScanner.nextLine();
+        // Initialization
+        String name;
         int score = 0;
+        // Input
         try {
+            System.out.print("Input Username: ");
+            name = inputScanner.nextLine();
             System.out.print("Input Score: ");
             score = inputScanner.nextInt();
         } catch (InputMismatchException e) {
-            System.out.println("Error: Score must be number!");
+            System.out.println("Error: Please input a valid data type");
             inputScanner.close();
             return;
         }
+
         // Logic
         String grade = "";
         if (score >= 90 && score <= 100) {
@@ -36,6 +42,8 @@ public class Main {
         } else {
             grade = "Invalid score";
         }
+
+        // Print
         System.out.println(name + " with a score of " + score + " received grade " + grade);
 
         // Close scanner
