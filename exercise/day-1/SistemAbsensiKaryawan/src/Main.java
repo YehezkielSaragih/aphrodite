@@ -57,10 +57,10 @@ public class Main {
 
         // Print
         System.out.println("\nAttendance Report");
-        System.out.println("Employee: " + name);
-        System.out.println("Status: " + status);
-        System.out.println("Deduction: Rp " + deduction);
-        System.out.println("Salary received: Rp " + receivedSalary);
+        System.out.println("Employee = " + name);
+        System.out.println("Status = " + status);
+        System.out.printf("Deduction = Rp %,.2f\n", deduction);
+        System.out.printf("Salary received = Rp %,.2f\n", receivedSalary);
 
         // Close scanner
         inputScanner.close();
