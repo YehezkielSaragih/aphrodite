@@ -76,10 +76,9 @@ public class Main {
         // Print
         System.out.println("\nReport");
         System.out.println("Buyer Name = " + name);
-        System.out.println("Total Purchase = Rp " + totalPurchase);
-        System.out.println("Discount Percentage = " + discountPercent*100 + "%");
-        System.out.println("Discount Amount = Rp " + discountAmount);
-        System.out.println("Total Payment = Rp " + totalPayment);
-
+        System.out.printf("Total Purchase = Rp %,.2f\n", totalPurchase);
+        System.out.printf("Discount Percentage = %d%%\n", (int)(discountPercent * 100));
+        System.out.printf("Discount Amount = Rp %,.2f\n", discountAmount);
+        System.out.printf("Total Payment = Rp %,.2f\n", totalPayment);
     }
 }
