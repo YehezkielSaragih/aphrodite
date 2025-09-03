@@ -59,7 +59,7 @@ public class Main {
                     totalFee = 25000;
                 }
                 break;
-                
+
             default:
                 System.out.println("Invalid vehicle type!");
                 inputScanner.close();

@@ -18,11 +18,12 @@ public class Main {
         String grade;
 
         // Input
+        System.out.print("Input Username: ");
+        name = inputScanner.nextLine();
         try {
-            System.out.print("Input Username: ");
-            name = inputScanner.nextLine();
             System.out.print("Input Score: ");
             score = inputScanner.nextInt();
+            inputScanner.nextLine();
         } catch (InputMismatchException e) {
             System.out.println("Error: Please input a valid data type");
             inputScanner.close();
