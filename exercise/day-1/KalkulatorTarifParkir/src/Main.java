@@ -70,7 +70,7 @@ public class Main {
         System.out.println("\nParking Report");
         System.out.println("Vehicle type = "+vehicleType);
         System.out.println("Parking duration = "+parkDuration+" hours");
-        System.out.println("Total fee = Rp "+totalFee);
+        System.out.printf("Total fee = Rp %,d.00\n",totalFee);
 
         // Close scanner
         inputScanner.close();
