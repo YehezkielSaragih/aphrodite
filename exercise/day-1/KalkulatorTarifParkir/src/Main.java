@@ -12,27 +12,28 @@ public class Main {
         // Open scanner
         Scanner inputScanner = new Scanner(System.in);
 
-        // Vehicle type
-        System.out.print("Vehicle type (motor/mobil) = ");
-        String vehicleType = inputScanner.nextLine().toLowerCase();
-        if (!vehicleType.equals("motor") && !vehicleType.equals("mobil")) {
-            System.out.println("Invalid vehicle type!");
-            inputScanner.close();
-            return;
-        }
-
-        // Park duration
+        // Initialization
+        String vehicleType;
         int parkDuration=0;
+
+        // Input
         try {
-            System.out.print("Parking duration (hours): ");
+            System.out.print("Vehicle type (motor/mobil) = ");
+            vehicleType = inputScanner.nextLine().toLowerCase();
+            if (!vehicleType.equals("motor") && !vehicleType.equals("mobil")) {
+                System.out.println("Invalid vehicle type!");
+                inputScanner.close();
+                return;
+            }
+            System.out.print("Parking duration (hours) = ");
             parkDuration = inputScanner.nextInt();
         } catch (InputMismatchException e) {
-            System.out.println("Error: Parking duration must be a number!");
+            System.out.println("Error: Please input a valid data type!");
             inputScanner.close();
             return;
         }
 
-        // Total fee
+        // Logic
         int totalFee = 0;
         switch(vehicleType){
 
@@ -62,6 +63,11 @@ public class Main {
                 inputScanner.close();
                 return;
         }
+
+        // Print
+        System.out.println("\nParking Report");
+        System.out.println("Vehicle type = "+vehicleType);
+        System.out.println("Parking duration = "+parkDuration+" hours");
         System.out.println("Total fee = Rp "+totalFee);
 
         // Close scanner
