@@ -65,7 +65,7 @@ public class Main {
         System.out.println("Member Name = " + memberName);
         System.out.println("Loan Status = " + loanStatus);
         System.out.println("Days Elapsed = " + daysElapsed);
-        System.out.printf("Total Fine = Rp %,.2f%n", totalFine);
+        System.out.printf("Total Fine = Rp %,.2f\n", totalFine);
 
         // Close scanner
         inputScanner.close();
