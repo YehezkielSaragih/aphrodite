@@ -14,7 +14,9 @@ public class Main {
 
         // Initialization
         String name;
-        int score = 0;
+        int score;
+        String grade;
+
         // Input
         try {
             System.out.print("Input Username: ");
@@ -28,7 +30,6 @@ public class Main {
         }
 
         // Logic
-        String grade = "";
         if (score >= 90 && score <= 100) {
             grade = "A";
         } else if (score >= 80 && score <= 89) {
