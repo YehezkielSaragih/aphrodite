@@ -12,15 +12,18 @@ public class Main {
 
         // Initialization
         String name;
-        int arrivalTime = 0;
-        double dailySalary = 0.0;
+        int arrivalTime;
+        double dailySalary;
+        String status;
+        double deductionPercent;
 
         // Input
+        System.out.print("Employee name: ");
+        name = inputScanner.nextLine();
         try {
-            System.out.print("Employee name: ");
-            name = inputScanner.nextLine();
             System.out.print("Arrival time (800 for 08:00): ");
             arrivalTime = inputScanner.nextInt();
+            inputScanner.nextLine();
             if(arrivalTime>=2400){
                 System.out.println("Error: Invalid time format!");
                 inputScanner.close();
@@ -28,6 +31,7 @@ public class Main {
             }
             System.out.print("Daily salary: ");
             dailySalary = inputScanner.nextDouble();
+            inputScanner.nextLine();
         } catch (InputMismatchException e) {
             System.out.println("Error: Please enter the correct data type!");
             inputScanner.close();
@@ -35,8 +39,6 @@ public class Main {
         }
 
         // Logic
-        String status;
-        double deductionPercent = 0.0;
         if (arrivalTime <= 800) {
             status = "Tepat Waktu";
             deductionPercent = 0.0;
