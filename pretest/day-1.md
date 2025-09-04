@@ -7,14 +7,14 @@
 1. Apa yang menjadi tanggung jawab utama seorang Backend Engineer?
 
    - A. Mendesain UI
-   - B. Mengelola logika aplikasi dan komunikasi data dengan database
+   - **B. Mengelola logika aplikasi dan komunikasi data dengan database**
    - C. Membuat animasi
    - D. Membuat desain grafis
 
 2. Dalam OOP Java, konsep **encapsulation** berarti:
 
    - A. Menyembunyikan detail implementasi dan menyediakan akses lewat method
-   - B. Mewarisi method dari class lain
+   - **B. Mewarisi method dari class lain**
    - C. Menambahkan method ke dalam class
    - D. Menghubungkan dua class yang berbeda
 
@@ -22,12 +22,12 @@
 
    - A. Menjalankan program utama
    - B. Menyimpan konfigurasi properties
-   - C. Meng-inject dependency otomatis ke dalam bean
+   - **C. Meng-inject dependency otomatis ke dalam bean**
    - D. Mendaftarkan endpoint baru
 
 4. Mengapa sebaiknya logika bisnis diletakkan di service layer?
 
-   - A. Agar controller lebih ringan dan fokus pada request/response
+   - **A. Agar controller lebih ringan dan fokus pada request/response**
    - B. Agar lebih cepat dalam compile
    - C. Karena controller tidak mendukung operasi logika
    - D. Agar dapat digunakan langsung tanpa testing
@@ -36,33 +36,44 @@
 
    - A. `@Route("/api")`
    - B. `@Mapping("/api")`
-   - C. `@GetMapping("/api")`
+   - **C. `@GetMapping("/api")`**
    - D. `@WebRoute("/api")`
 
 ---
 
 ### 🔸 **B. True / False (5 Soal)**
 
-6. Dalam arsitektur backend, service biasanya dipanggil langsung dari frontend.
-7. Constructor Injection adalah cara yang direkomendasikan untuk dependency injection di Spring.
-8. `@Service` digunakan untuk menandai sebuah class sebagai penyedia logika bisnis.
-9. Semua logika bisa ditaruh dalam controller agar tidak perlu membuat banyak file.
-10. Spring Boot memerlukan `main()` method untuk menjalankan aplikasinya.
+6. Dalam arsitektur backend, service biasanya dipanggil langsung dari frontend. **FALSE**
+7. Constructor Injection adalah cara yang direkomendasikan untuk dependency injection di Spring. **TRUE**
+8. `@Service` digunakan untuk menandai sebuah class sebagai penyedia logika bisnis. **TRUE**
+9. Semua logika bisa ditaruh dalam controller agar tidak perlu membuat banyak file. **FALSE**
+10. Spring Boot memerlukan `main()` method untuk menjalankan aplikasinya. **TRUE**
 
 ---
 
 ### 🔸 **C. Jawaban Singkat Penjelasan (10 Soal)**
 
 11. Jelaskan apa itu Backend dan bagaimana perannya dalam aplikasi.
+Backend adalah bagian dari aplikasi yang berjalan di server dan bertugas mengatur logika, proses bisnis, autentikasi, komunikasi dengan database, serta menyediakan API untuk frontend.
 12. Apa perbedaan antara class dan object dalam Java?
+Class adalah sebuah blueprint yang memiliki atribute dan method untuk membuat sebuah object/entitas
 13. Sebutkan dan jelaskan 2 prinsip OOP lainnya selain encapsulation.
+Inheritance: pewarisan sifat dari class parent ke class child, agar attribute dan method bisa digunakan kembali.
+Polymorphism: kemampuan object untuk memiliki banyak bentuk (method yang sama dapat berperilaku berbeda).
 14. Mengapa kita menggunakan annotation `@RestController`?
+Penanda class yang menangani request web (@controller) dan response data (@responsebody)
 15. Apa keuntungan menggunakan Spring Boot dibanding membuat server dari nol di Java?
+Auto configuration yang membuat proses pembuatan menjadi lebih cepat
 16. Jelaskan cara kerja dependency injection di Spring Boot secara sederhana.
+Spring secara otomatis membuat bean dan menyuntikkannya ke constructor atau field sehingga tidak perlu membuat object dengan "new"
 17. Apa manfaat memisahkan controller dan service dalam arsitektur aplikasi?
+Agar struktur code lebih terstruktur (clean architecture) dimana controller fokus pada penanganan request dan response, sedangkan service fokus pada logika bisnis
 18. Jelaskan apa yang terjadi jika Anda tidak menambahkan `@Service` pada class yang berisi logika.
+Class tidak dikenali Spring sebagai service dan logikanya tidak dapat di inject ke controller
 19. Apa itu `@RequestParam` dan kapan digunakan?
+Mengambil data dari query parameter url
 20. Bagaimana cara menghubungkan controller ke service menggunakan constructor?
+Menggunakan constructor injection
 
 ---
 
@@ -75,9 +86,15 @@
 ```java
 @RestController
 public class HelloController {
+    // helloService not defined
+    private final HelloService helloService;
+    // make constructor
+    public HelloController(HelloService helloService) {
+        this.helloService = helloService;
+    }
     @GetMapping("/hello")
     public String hello() {
-        return helloService.sayHello(); // error
+        return helloService.sayHello(); 
     }
 }
 ```
@@ -86,9 +103,11 @@ public class HelloController {
 
 ```java
 public class Person {
-    public String name;
+    // private modifier for attribute
+    private String name;
 
-    public void Person(String name) {
+    // public modifier for constructor
+    public Person(String name) {
         this.name = name;
     }
 }
@@ -99,8 +118,9 @@ public class Person {
 ```java
 @RestController
 public class GreetController {
+    // request body doesnt have data type
     @PostMapping("/greet")
-    public String greet(@RequestBody name) {
+    public String greet(@RequestBody String name) {
         return "Hello, " + name;
     }
 }
@@ -119,9 +139,17 @@ public class InfoService {
 // controller
 @RestController
 public class InfoController {
+    // define the InfoService object so that this class can use the get method, which returns the getInfo method from the Info object
+    // can also use autowired
+    // private final InfoService infoService;
+    // public InfoController(InfoService infoService) {
+    //     this.infoService = infoService;
+    // }
+    @AutoWired
+    InfoService info;
+
     @GetMapping("/info")
     public String get() {
-        InfoService info = new InfoService();
         return info.getInfo();
     }
 }
@@ -132,8 +160,9 @@ public class InfoController {
 ```java
 @RestController
 public class MathController {
+    // parameters must be marked with @RequestParam to indicate where they come from
     @GetMapping("/add")
-    public int addNumbers(int a, int b) {
+    public int addNumbers(@RequestParam int a, @RequestParam int b) {
         return a + b;
     }
 }
