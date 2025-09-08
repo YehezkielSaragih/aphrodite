@@ -2,6 +2,7 @@ package com.example.mobil.controller;
 
 import com.example.mobil.repository.MobilRepo;
 import com.example.mobil.entity.Mobil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +14,10 @@ import java.util.*;
 @RequestMapping("/api/mobil")
 public class MobilController {
 
-  private final MobilRepo repo;
+    @Autowired
+  private MobilRepo repo;
 
-  public MobilController(MobilRepo repo) { this.repo = repo; }
+    //public MobilController(MobilRepo repo) { this.repo = repo; }
 
   // GET: list semua mobil
   @GetMapping
